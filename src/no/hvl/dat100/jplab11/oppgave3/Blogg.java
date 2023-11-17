@@ -116,6 +116,20 @@ public class Blogg {
 	}
 	
 	public int[] search(String keyword) {
-		throw new UnsupportedOperationException(TODO.method());
+	    int antall = 0;
+	    int[] tempResultater = new int[innleggtabell.length];
+	    
+	    for (int i = 0; i < innleggtabell.length; i++) {
+	        if (innleggtabell[i] != null && innleggtabell[i].toString().contains(keyword)) {
+	            tempResultater[antall] = innleggtabell[i].getId();
+	            antall++;
+	        }
+	    }
+	    
+	    int[] resultater = new int[antall];
+	    System.arraycopy(tempResultater, 0, resultater, 0, antall);
+
+	    return resultater;
 	}
+
 }

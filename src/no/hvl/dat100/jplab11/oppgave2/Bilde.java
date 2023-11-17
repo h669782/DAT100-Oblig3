@@ -31,9 +31,9 @@ public class Bilde extends Tekst {
 	}
 
 	// Metoden nedenfor er kun for valgfri oppgave 6
-	public String toHTML() {
-		
-		throw new UnsupportedOperationException(TODO.method());
-				
-	}
+	@Override
+    public String toHTML() {
+        return super.toHTML() + 
+               "\t\t<iframe src=\"" + getUrl() + "\" height=600 width=800></iframe>\n\t\t<hr>\n";
+    }
 }
