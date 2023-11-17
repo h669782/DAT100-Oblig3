@@ -67,37 +67,55 @@ public class Blogg {
 		return true;
 	}
 	
+	@Override
 	public String toString() {
-		String txt = nesteledig + "\n";
-		for(int i = 0; i < nesteledig; i++) {
-			txt += innleggtabell[i].getId() + "\n" + 
-				   innleggtabell[i].getBruker() + "\n" + 
-				   innleggtabell[i].getDato() + "\n" +
-				   innleggtabell[i].getLikes() + "\n";
-		}
-		return txt;
+	    StringBuilder txt = new StringBuilder();
+	    txt.append(nesteledig).append("\n");
+
+	    for (int i = 0; i < nesteledig; i++) {
+	        Innlegg innlegg = innleggtabell[i];
+	        txt.append(innlegg.toString());
+	    }
+
+	    return txt.toString();
 	}
+
+
+
 
 	// valgfrie oppgaver nedenfor
 	
 	public void utvid() {
-		throw new UnsupportedOperationException(TODO.method());
+		Innlegg[] ny = new Innlegg[innleggtabell.length * 2];
+		int antall = 0;
+		for(int i = 0; i < innleggtabell.length; i++) {
+			if(innleggtabell[i] != null) {
+				ny[antall] = innleggtabell[i];
+				antall++;
+			}
+		}
+		innleggtabell = ny;
 	}
 	
 	public boolean leggTilUtvid(Innlegg innlegg) {
-
-		throw new UnsupportedOperationException(TODO.method());
-		
+		if(!leggTil(innlegg)) {
+			utvid();
+			leggTil(innlegg);
+			return true;
+		}
+		return true;
 	}
 	
 	public boolean slett(Innlegg innlegg) {
-		
-		throw new UnsupportedOperationException(TODO.method());
+		if(finnes(innlegg)) {
+			innleggtabell[finnInnlegg(innlegg)] = null;
+			nesteledig--;
+			return true;
+		}
+		return false;
 	}
 	
 	public int[] search(String keyword) {
-		
 		throw new UnsupportedOperationException(TODO.method());
-
 	}
 }
